@@ -1,0 +1,7 @@
+.company-overview-main{
+    display:flex;
+    gap:18px;
+}
+li{
+    padding: 0;
+}
