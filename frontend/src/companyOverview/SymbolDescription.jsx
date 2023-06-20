@@ -2,18 +2,18 @@ import React from 'react';
 import Statistics from './statistics/Statistics';
 import "./SymbolDescription.css"
 export default function SymbolDescription(props) {
-
-  const { data } = props.company;
+  
+  const { company } = props
   const DMA50 = "50DayMovingAverage";
   const WL52 = "52WeekHigh";
   const WH52 = "52WeekLow";
   const DMA200 = "200DayMovingAverage";
-  const DMA50Value = data[DMA50];
-  const WL52Value = data[WL52];
-  const WH52Value = data[WH52];
-  const DMA200Value = data[DMA200];
-  const { Name, DividendDate, DividendPerShare, DividendYield, MarketCapitalization, Beta } = data;
-  console.log(data)
+  const DMA50Value = company[DMA50];
+  const WL52Value = company[WL52];
+  const WH52Value = company[WH52];
+  const DMA200Value = company[DMA200];
+  const { Name, DividendDate, DividendPerShare, DividendYield, MarketCapitalization, Beta } = company;
+  console.log(company)
   return (
   <>
     {Name && <h1>Company Overview</h1>}

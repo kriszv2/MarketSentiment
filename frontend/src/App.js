@@ -1,36 +1,32 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SymbolDescription from "./companyOverview/SymbolDescription";
 
 function App() {
-  const apiKey = process.env.REACT_APP_API_KEY;
-
   const [isSearched, setIsSearched] = useState(false);
   const [symbol, setSymbol] = useState(``);
-  const [company, setCompany] = useState([]);
+  const [company, setCompany] = useState(null);
   const [isValid, setIsValid] = useState(true);
 
   const changeHandler = (e) => {
     setSymbol(e.target.value);
   };
-  const searchSymbol = (e) => {
+  const searchSymbol = async (e) => {
     e.preventDefault();
-
-    let url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`;
-    axios
-      .get(url)
-      .then((res) => {
-        setCompany(res);
-        setIsSearched(true);
-        setSymbol(``);
-        Object.keys(res.data).length === 0
-          ? setIsValid(false)
-          : setIsValid(true);
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      const res = await axios.post("http://127.0.0.1:5000/search-symbol", {
+        symbol,
       });
+      setCompany(res.data);
+      setIsSearched(true);
+      setSymbol(``);
+
+      Object.keys(res.data).length === 0 ? setIsValid(false) : setIsValid(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <div className="App">
       <header>
