@@ -1,5 +1,5 @@
 import React from 'react';
-import Statistics from './statistics/Statistics';
+import Summary from './summary/Summary';
 import "./SymbolDescription.css"
 export default function SymbolDescription(props) {
   
@@ -21,10 +21,11 @@ export default function SymbolDescription(props) {
 
       <div>
         <h3>Summary</h3>
-        <Statistics Name={Name} DMA50Value={DMA50Value} WL52Value={WL52Value} WH52Value={WH52Value} DMA200Value={DMA200Value} DividendDate={DividendDate} DividendPerShare={DividendPerShare} DividendYield={DividendYield} MarketCapitalization={ MarketCapitalization } Beta={Beta} />
+        <Summary Name={Name} DMA50Value={DMA50Value} WL52Value={WL52Value} WH52Value={WH52Value} DMA200Value={DMA200Value} DividendDate={DividendDate} DividendPerShare={DividendPerShare} DividendYield={DividendYield} MarketCapitalization={ MarketCapitalization } Beta={Beta} />
       </div>
       <div>
         <h3>Statistics</h3>
+        {/* <Statistics/>   */}
       </div>
     </div>
   </>
