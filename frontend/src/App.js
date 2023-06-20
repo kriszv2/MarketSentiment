@@ -7,11 +7,23 @@ function App() {
   const [symbol, setSymbol] = useState(``);
   const [company, setCompany] = useState(null);
   const [isValid, setIsValid] = useState(true);
+  const [stockPrice, setStockPrice] = useState(null);
 
   const changeHandler = (e) => {
     setSymbol(e.target.value);
   };
-  const searchSymbol = async (e) => {
+  const searchSymbolPrice = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://127.0.0.1:5000/get-price", {
+        symbol,
+      });
+      setStockPrice(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const searchSymbolData = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("http://127.0.0.1:5000/search-symbol", {
@@ -25,6 +37,11 @@ function App() {
     } catch (error) {
       console.error(error);
     }
+  };
+  const searchSymbol = async (e) => {
+    e.preventDefault();
+    await searchSymbolPrice(e);
+    await searchSymbolData(e);
   };
 
   return (
@@ -44,6 +61,11 @@ function App() {
           <input type="submit" value="Submit" />
         </form>
         {!isValid && <p>Invalid company symbol</p>}
+        <h2>
+          {stockPrice &&
+            stockPrice["Global Quote"] &&
+            stockPrice["Global Quote"]["05. price"]}
+        </h2>
         {isSearched && <SymbolDescription company={company} />}
       </main>
     </div>

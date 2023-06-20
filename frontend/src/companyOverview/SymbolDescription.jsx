@@ -1,6 +1,8 @@
 import React from 'react';
 import Summary from './summary/Summary';
 import "./SymbolDescription.css"
+import Statistics from './statistics/Statistics';
+
 export default function SymbolDescription(props) {
   
   const { company } = props
@@ -25,7 +27,7 @@ export default function SymbolDescription(props) {
       </div>
       <div>
         <h3>Statistics</h3>
-        {/* <Statistics/>   */}
+          <Statistics/>
       </div>
     </div>
   </>

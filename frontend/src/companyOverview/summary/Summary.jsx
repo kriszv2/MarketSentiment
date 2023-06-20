@@ -2,7 +2,7 @@ import React from "react";
 import { MarketCapCalculation } from "./Stat-functions"
 
 export default function Statistics(props) {
-
+  
   const { Name, DividendDate, DividendPerShare, DividendYield, DMA50Value, WL52Value, WH52Value, DMA200Value, Beta } = props;
   
   let { MarketCapitalization } = props;
