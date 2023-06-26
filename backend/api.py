@@ -11,6 +11,16 @@ api_key = os.getenv("API_KEY")
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/get-price', methods=['POST'])
+def get_price_of_symbol():
+    symbol = request.json['symbol']
+    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
+    res = requests.get(url)
+    if res.status_code == 200:
+        data = res.json()
+        return jsonify(data)
+    else:
+        return jsonify({'error': 'Request failed with status code: ' + str(res.status_code)})
 @app.route('/search-symbol', methods=['POST'])
 def search_symbol_endpoint():
     symbol = request.json['symbol']
