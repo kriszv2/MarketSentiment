@@ -62,6 +62,7 @@ function App() {
         </form>
         {!isValid && <p>Invalid company symbol</p>}
         <h2>
+          Current Price:&nbsp;
           {stockPrice &&
             stockPrice["Global Quote"] &&
             stockPrice["Global Quote"]["05. price"]}
