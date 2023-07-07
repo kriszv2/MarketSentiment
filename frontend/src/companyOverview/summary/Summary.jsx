@@ -13,6 +13,7 @@ export default function Statistics(props) {
   const WH52Value = company[WH52];
   const DMA200Value = company[DMA200];
   let { MarketCapitalization } = company;
+  
   let MarketCap = MarketCapCalculation(MarketCapitalization)
   
   return (
